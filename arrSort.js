@@ -14,7 +14,8 @@ function sort(arr){
     }
     return arr;
 }
-let test=[9,3,10,2,1,48,100];
+// let test=[9,3,10,2,1,48,100];
+let test=[1,2,3,4,5,6];
 
 let result= sort(test);
 // console.log(result);

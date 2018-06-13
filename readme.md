@@ -89,6 +89,8 @@
     6. 连接结束
 
 14. 什么是原型、原型链，他们之间的关系是什么？
+    1. 原型是对象对象，原型链式__proto__指针构成的一个链式结构，原型链指向原型
+
 15. TCP与UDP之间的关系是什么？他们有什么区别？
     1. tcp协议
         - 是面向有连接的协议，也就是使用tcp协议传输数据之前，一定要在发送和接收方之间建立连接。一般情况建立连接需要三步，关闭连接需要四步。
@@ -97,6 +99,40 @@
     2. UDP协议
         - 是面向无连接的协议，
         - 只会将数据传递给接收端，但是不关注接收端是否能够收到数据，但正是这个特性，使得其比较适合视频、音频类的及时通信。
+16. ES5中的继承与ES6中的class的区别？
+    ```javascript
+        function Animal() {
+            this.type='animals';
+        }
+        function Dog() {
+            this.name='dog';
+        }
+        Dog.prototype=new Animal();
+        Dog.prototype.constructor=Dog;
+        var dogs=new Dog();
+        console.log(Dog.prototype.constructor===Dog)
+        console.log(dogs.constructor===Dog);
+        console.log(dogs.__proto__===Dog.prototype);
+        console.log(Dog.prototype.__proto__==Animal.prototype);
+
+        class Fruits{
+            p() {
+                return 2;
+            }
+        }
+
+        class Apple extends Fruits {
+            constructor() {
+                super();
+                console.log(super.p()); // 2
+            }
+        }
+
+        console.log(Apple.__proto__ === Fruits);
+    ```
+    1. 子类prototype对象的__proto__指向父类的prototype对象
+    2. class中通过调用super()来调用父类的构造函数，而且必须调用，否则报错，但是super内部的this指向子类。super当成对象使用的时候，指向父类的prototype原型对象。
+    3. 用 class 实现的继承，既包括类实例的继承关系，也包括类本身的继承关系。这里的类其实是特殊的.例如：Apple.__proto__ === Fruits
 
     
     
